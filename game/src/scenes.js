@@ -48,15 +48,15 @@
       G.camYaw = 0; G.camPitch = 0.24; G.camDist = 11;
     } else if (name === 'chase') {
       // Player coupe at speed, four cruisers lit up behind, 4 stars.
-      var coupe = parked[0] || G.heroCar;
-      setPlayerInCar(coupe, 4, 44, Math.PI, 19);
-      var spots = [[-4, 30], [9, 24], [-9, 16], [3, 8]];
+      var coupe = parked.filter(function (c) { return c.type.id === 'coupe'; })[0] || parked[0] || G.heroCar;
+      setPlayerInCar(coupe, 0, 92, Math.PI, 19);
+      var spots = [[-3.5, 83], [4, 79], [-4, 74], [3.5, 69]];
       for (var i = 0; i < 4; i++) {
         var cop = VAD.spawnCar(G.scene, 'interceptor', 0x22262f, spots[i][0], spots[i][1], Math.PI, 'police');
         cop.lampMesh.visible = true;
       }
       var off = VAD.makeHuman({ shirt: 0x1d2f5e, pants: 0x141c33, skin: 0xd9a077, hair: 0x10131c });
-      off.group.position.set(13.5, 0, 38); off.group.rotation.y = -Math.PI / 2;
+      off.group.position.set(11.5, 0, 78); off.group.rotation.y = -Math.PI / 2;
       G.scene.add(off.group);
       G.wanted = 4; G.heat = 4;
       VAD.setObjective('THE VAULT RUN', 'Lose the police', 'Stars: 4 — break line of sight');
@@ -65,14 +65,14 @@
       // Front three-quarter chase framing (proven fix): the camera sits ahead
       // of the player car looking back, so all four cruisers stay IN FRAME
       // behind it instead of hidden behind a follow camera.
-      G.camYaw = 0.45; G.camPitch = 0.26; G.camDist = 13;
+      G.camYaw = 0.45; G.camPitch = 0.34; G.camDist = 14;
     } else if (name === 'onfoot') {
       // Jax on foot in the Old Market, Odile's dialogue open, shop marker near.
-      setPlayerOnFoot(-118, 56, Math.PI * 0.8);
-      G.odileFigure.group.position.set(-114.5, 0, 51);
-      G.odileFigure.group.rotation.y = Math.PI * 0.3;
+      setPlayerOnFoot(-104, 63, 0.85);
+      G.odileFigure.group.position.set(-107.5, 0, 58.5);
+      G.odileFigure.group.rotation.y = Math.PI * 0.85;
       var near = G.peds.slice(0, 5);
-      var pp = [[-124, 50], [-112, 62], [-126, 63], [-110, 47], [-121, 42]];
+      var pp = [[-113, 55], [-97, 68], [-116, 66], [-99, 54], [-109, 70]];
       near.forEach(function (ped, i) {
         ped.x = pp[i][0]; ped.z = pp[i][1];
         ped.fig.group.position.set(ped.x, 0, ped.z);
@@ -82,16 +82,20 @@
       VAD.setObjective('FIRST PARCEL', 'Pick up the parcel at the Old Market stalls', '12 m');
       VAD.city.beacon.visible = true;
       VAD.city.beacon.position.set(-120, 23, 48);
-      VAD.showDialogue('Odile Vane', ['A parcel waits at the Old Market stalls, Jax. Fetch it, bring it to the Neon Mile — and do not open it.']);
-      G.mode = 'play'; // keep the posed frame live; the box stays open for the shot
+      // Fill the dialogue box DIRECTLY (posed HUD state): going through
+      // showDialogue would create an AudioContext with no user gesture and
+      // log autoplay warnings into the capture's console.
+      document.getElementById('dlg-name').textContent = 'Odile Vane';
+      document.getElementById('dlg-text').textContent = 'A parcel waits at the Old Market stalls, Jax. Fetch it, bring it to the Neon Mile — and do not open it.';
       document.getElementById('dialogue').classList.remove('hidden');
-      G.camYaw = Math.PI * 0.82; G.camPitch = 0.3; G.camDist = 8.5;
+      G.mode = 'play'; // keep the posed frame live; the box stays open for the shot
+      G.camYaw = 0.85; G.camPitch = 0.3; G.camDist = 8.5;
     } else if (name === 'mission') {
       // Dockmaster Pickup on the harbour run, countdown + marker + TATTOO sign.
       var pickup = G.cars.filter(function (c) { return c.type.id === 'pickup'; })[0] || parked[1] || G.heroCar;
-      setPlayerInCar(pickup, 148, 206, Math.PI, 12);
-      if (traffic[2]) { parkCar(traffic[2], 141, 238, 0); traffic[2].role = 'traffic'; }
-      if (traffic[3]) { parkCar(traffic[3], 156, 184, Math.PI); traffic[3].role = 'traffic'; }
+      setPlayerInCar(pickup, 124, 214, Math.PI, 12);
+      if (traffic[2]) { parkCar(traffic[2], 115, 240, 0); traffic[2].role = 'traffic'; }
+      if (traffic[3]) { parkCar(traffic[3], 133, 188, Math.PI); traffic[3].role = 'traffic'; }
       G.radioIndex = 3;
       VAD.Missions.active = true; VAD.Missions.idx = 1;
       VAD.setObjective('NINE MINUTES TO DOCK NINE', 'Reach the harbour vault quay', '47 m · 96 s left');

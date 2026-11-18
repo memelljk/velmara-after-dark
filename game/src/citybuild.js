@@ -355,7 +355,8 @@
       rain.geometry.attributes.position.needsUpdate = true;
       beacon.material.opacity = 0.22 + Math.sin(t * 3.2) * 0.1;
       for (var m = 0; m < city.markers.length; m++) {
-        city.markers[m].ring.rotation.z = t * 0.8;
+        var s = 1 + Math.sin(t * 2.4 + m) * 0.08; // pulse in the ground plane, never tumble
+        city.markers[m].ring.scale.set(s, s, 1);
       }
     };
     return city;
