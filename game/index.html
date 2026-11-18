@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velmara After Dark — a rain-soaked open-world crime game</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23070a18'/%3E%3Ccircle cx='8' cy='8' r='5' fill='%23ff5f9e'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="afterdark.css">
+</head>
+<body>
+<canvas id="gl"></canvas>
+
+<div id="hud" class="hidden">
+  <div id="hud-top">
+    <div id="hud-stats">
+      <span id="hud-cash">$0</span>
+      <span id="hud-rank">RANK: STREET RAT</span>
+      <span id="hud-clock">21:00</span>
+      <span id="hud-district">Neon Mile</span>
+    </div>
+    <div id="hud-wanted" title="Wanted level"></div>
+  </div>
+  <div id="hud-objective">
+    <div id="obj-title">FIRST PARCEL</div>
+    <div id="obj-text">Talk to Odile Vane at her Neon Mile booth</div>
+    <div id="obj-meta"></div>
+  </div>
+  <div id="hud-bottom">
+    <div id="hud-bars">
+      <div class="bar-row"><span>HP</span><div class="bar"><div id="bar-health"></div></div></div>
+      <div class="bar-row"><span>ARM</span><div class="bar"><div id="bar-armor"></div></div></div>
+      <div class="bar-row" id="row-busted"><span>BUST</span><div class="bar"><div id="bar-busted"></div></div></div>
+    </div>
+    <div id="hud-ride">
+      <div id="hud-speed"></div>
+      <div id="hud-car"></div>
+      <div id="hud-radio"></div>
+    </div>
+    <div id="hud-weapon">
+      <div id="hud-ammo"></div>
+      <div id="hud-prompt"></div>
+    </div>
+  </div>
+  <canvas id="minimap" width="180" height="180"></canvas>
+  <div id="crosshair" class="hidden">+</div>
+</div>
+
+<div id="dialogue" class="hidden">
+  <div id="dlg-name">Odile Vane</div>
+  <div id="dlg-text"></div>
+  <div id="dlg-hint">Click or press E to continue</div>
+</div>
+
+<div id="shopmenu" class="hidden">
+  <h2 id="shop-name">Shop</h2>
+  <div id="shop-items"></div>
+  <div id="shop-cash"></div>
+  <button id="shop-close">Leave (Esc)</button>
+</div>
+
+<div id="bigmap" class="hidden">
+  <h2>VELMARA</h2>
+  <canvas id="mapcanvas" width="640" height="640"></canvas>
+  <div class="map-hint">P or Esc to close — gold diamond: objective · pink: shops · green: safehouses · blue: you</div>
+</div>
+
+<div id="title">
+  <h1>VELMARA <span>AFTER DARK</span></h1>
+  <p class="tag">Rain on neon. Debts in the harbour. One driver who never says no.</p>
+  <p class="story">Jax Rook owes the wrong people. Fixer Odile Vane offers twelve jobs that climb from a single parcel to the vault cash and a run for the city limits. Steal any car, outrun the interceptors, spend the take in six shops, sleep it off in three safehouses.</p>
+  <div class="title-btns">
+    <button id="btn-new">NEW GAME</button>
+    <button id="btn-continue" class="hidden">CONTINUE</button>
+  </div>
+  <div class="controls">
+    <div><b>W A S D</b> move / drive</div><div><b>Mouse</b> orbit camera · aim</div>
+    <div><b>E</b> talk · enter / steal car · use shop &amp; safehouse</div><div><b>Click</b> shoot · <b>F</b> melee</div>
+    <div><b>Space</b> handbrake drift</div><div><b>R</b> radio in car / reload on foot</div>
+    <div><b>P</b> city map</div><div><b>M</b> mute · <b>Esc</b> pause</div>
+  </div>
+  <p class="fine">A complete open world: 12 story missions · 6 shops · 3 safehouses · 4 radio stations · 205 buildings · 648 streetlights. Zero network requests; progress saves in your browser.</p>
+</div>
+
+<div id="pause" class="hidden">
+  <h2>PAUSED</h2>
+  <p id="pause-stats"></p>
+  <button id="btn-resume">RESUME</button>
+  <button id="btn-restart">RESTART STORY</button>
+</div>
+
+<div id="endscreen" class="hidden">
+  <h2 id="end-title">WASTED</h2>
+  <p id="end-text"></p>
+  <button id="btn-respawn">CONTINUE</button>
+</div>
+
+<div id="toast" class="hidden"></div>
+
+<script src="vendor/three.min.js"></script>
+<script src="src/mergegeo.js"></script>
+<script src="src/citybuild.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/wheels.js"></script>
+<script src="src/hero.js"></script>
+<script src="src/people.js"></script>
+<script src="src/police.js"></script>
+<script src="src/gunplay.js"></script>
+<script src="src/missions.js"></script>
+<script src="src/hud.js"></script>
+<script src="src/scenes.js"></script>
+<script src="src/nightloop.js"></script>
+</body>
+</html>

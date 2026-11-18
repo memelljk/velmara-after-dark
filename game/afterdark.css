@@ -1,0 +1,72 @@
+/* Velmara After Dark — night-neon interface styling. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #070a18; }
+body { font-family: "Segoe UI", Arial, sans-serif; color: #eef2ff; }
+#gl { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.hidden { display: none !important; }
+
+#hud { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+#hud-top { position: absolute; top: 12px; left: 14px; right: 14px; display: flex; justify-content: space-between; align-items: flex-start; }
+#hud-stats { display: flex; gap: 14px; font-weight: 700; font-size: 17px; text-shadow: 0 2px 6px #000; }
+#hud-cash { color: #7dff9a; }
+#hud-rank { color: #ffd23f; font-size: 13px; padding-top: 4px; }
+#hud-clock, #hud-district { color: #bcd2ff; font-size: 14px; padding-top: 3px; }
+#hud-wanted { font-size: 26px; letter-spacing: 3px; color: #2c3350; text-shadow: 0 2px 6px #000; }
+#hud-wanted .lit { color: #ffd23f; text-shadow: 0 0 10px #ffb340; }
+
+#hud-objective { position: absolute; top: 52px; left: 14px; max-width: 430px; background: rgba(8, 10, 26, 0.66); border-left: 4px solid #ffd23f; padding: 8px 12px; border-radius: 4px; }
+#obj-title { color: #ffd23f; font-weight: 800; letter-spacing: 1px; font-size: 15px; }
+#obj-text { font-size: 14px; margin-top: 2px; }
+#obj-meta { color: #9fe8ff; font-size: 13px; margin-top: 2px; font-weight: 700; }
+
+#hud-bottom { position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end; }
+#hud-bars { width: 210px; }
+.bar-row { display: flex; align-items: center; gap: 7px; margin-top: 4px; font-size: 11px; font-weight: 800; color: #cdd8ff; }
+.bar { flex: 1; height: 11px; background: rgba(10, 12, 30, 0.75); border: 1px solid #46507a; border-radius: 3px; overflow: hidden; }
+.bar > div { height: 100%; width: 100%; transition: width 0.15s; }
+#bar-health { background: linear-gradient(90deg, #e83e6b, #ff7a90); }
+#bar-armor { background: linear-gradient(90deg, #3f8fe8, #7ab8ff); }
+#bar-busted { background: linear-gradient(90deg, #ffb340, #ffd23f); }
+#hud-ride { text-align: center; }
+#hud-speed { font-size: 30px; font-weight: 900; color: #fff; text-shadow: 0 2px 8px #000; }
+#hud-car { font-size: 13px; color: #bcd2ff; font-weight: 700; }
+#hud-radio { font-size: 13px; color: #ff8fc0; font-weight: 700; margin-top: 2px; }
+#hud-weapon { text-align: right; min-width: 190px; }
+#hud-ammo { font-size: 22px; font-weight: 900; text-shadow: 0 2px 6px #000; }
+#hud-prompt { font-size: 14px; color: #ffd23f; font-weight: 700; text-shadow: 0 2px 6px #000; min-height: 18px; }
+
+#minimap { position: absolute; right: 14px; top: 56px; width: 180px; height: 180px; border-radius: 50%; border: 3px solid rgba(120, 140, 220, 0.8); background: #0a0e22; box-shadow: 0 4px 18px rgba(0,0,0,0.6); }
+#crosshair { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 26px; color: rgba(255,255,255,0.85); text-shadow: 0 0 6px #000; }
+
+#dialogue { position: fixed; left: 50%; bottom: 110px; transform: translateX(-50%); width: min(680px, 92vw); background: rgba(8, 10, 28, 0.92); border: 1px solid #ff5f9e; border-radius: 8px; padding: 14px 18px; z-index: 8; cursor: pointer; }
+#dlg-name { color: #ff5f9e; font-weight: 800; letter-spacing: 1px; }
+#dlg-text { font-size: 16px; margin-top: 4px; line-height: 1.45; }
+#dlg-hint { color: #8fa0cc; font-size: 12px; margin-top: 6px; }
+
+#shopmenu, #pause, #endscreen { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); background: rgba(8, 10, 28, 0.95); border: 1px solid #46507a; border-radius: 10px; padding: 22px 26px; z-index: 9; min-width: 340px; text-align: center; }
+#shopmenu h2, #pause h2, #endscreen h2 { color: #ffd23f; letter-spacing: 1px; margin-bottom: 12px; }
+.shop-item { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 8px 4px; border-bottom: 1px solid #232a4a; font-size: 15px; }
+button { pointer-events: auto; background: #ff5f9e; color: #fff; border: none; border-radius: 6px; padding: 9px 18px; font-weight: 800; font-size: 14px; cursor: pointer; letter-spacing: 0.5px; }
+button:hover { background: #ff7ab0; }
+button:disabled { background: #3a4160; cursor: default; }
+#shop-cash { margin: 10px 0; color: #7dff9a; font-weight: 700; }
+#pause button, #endscreen button { margin: 6px 4px 0; }
+#pause-stats { margin-bottom: 10px; color: #bcd2ff; }
+
+#bigmap { position: fixed; inset: 0; background: rgba(4, 6, 16, 0.94); z-index: 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+#bigmap h2 { color: #ffd23f; letter-spacing: 4px; }
+#mapcanvas { border: 2px solid #46507a; border-radius: 8px; max-width: 92vw; max-height: 78vh; }
+.map-hint { color: #8fa0cc; font-size: 13px; }
+
+#title { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(180deg, rgba(7,10,24,0.55), rgba(7,10,24,0.88)); padding: 20px; }
+#title h1 { font-size: clamp(38px, 7vw, 74px); letter-spacing: 3px; color: #fff; text-shadow: 0 0 24px #ff5f9e, 0 4px 10px #000; }
+#title h1 span { color: #ff5f9e; }
+#title .tag { color: #9fe8ff; font-size: 17px; margin-top: 6px; font-style: italic; }
+#title .story { max-width: 640px; color: #dfe7ff; margin-top: 14px; line-height: 1.5; font-size: 15px; }
+.title-btns { display: flex; gap: 12px; margin-top: 20px; }
+.title-btns button { font-size: 17px; padding: 12px 30px; }
+.controls { display: grid; grid-template-columns: repeat(2, minmax(220px, 300px)); gap: 5px 26px; margin-top: 22px; text-align: left; font-size: 13.5px; color: #bcd2ff; }
+.controls b { color: #ffd23f; }
+#title .fine { margin-top: 16px; color: #8fa0cc; font-size: 12.5px; max-width: 640px; }
+
+#toast { position: fixed; left: 50%; top: 96px; transform: translateX(-50%); background: rgba(8, 10, 28, 0.92); border: 1px solid #ffd23f; color: #ffe9a8; padding: 10px 20px; border-radius: 8px; font-weight: 700; z-index: 11; }
